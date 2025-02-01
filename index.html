@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AAHA EMI RUCHI</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(to right, #141e30, #243b55);
+        color: white;
+        text-align: center;
+      }
+      .container {
+        max-width: 700px;
+        margin: 20px auto;
+        padding: 20px;
+      }
+      .restaurant-name {
+        font-size: 2.5em;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        text-shadow: 2px 2px 10px #ff6f61;
+      }
+      .menu-section {
+        display: none;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 12px;
+        transition: all 0.3s ease-in-out;
+      }
+      .menu-section.active {
+        display: block;
+      }
+      .menu-section h3 {
+        background: rgba(255, 255, 255, 0.2);
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 8px;
+      }
+      .menu-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 5px 0;
+        border-radius: 8px;
+      }
+      .category-btn {
+        margin: 10px;
+        padding: 10px;
+        background: #ff6f61;
+        border: none;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .category-btn.active {
+        background: #ff3d2e;
+      }
+      .category-btn:hover {
+        background: #ff3d2e;
+      }
+
+      .footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: auto;
+        background-color: #141e30;
+        color: white;
+        text-align: right;
+        padding: 10px 20px;
+        font-size: 1em;
+        /* border-top: 2px solid #ff6f61; */
+      }
+
+      .menu-header {
+        display: flex;
+        overflow-x: auto; /* Allow horizontal scrolling */
+        white-space: nowrap; /* Prevent line breaks */
+        padding: 10px 0;
+      }
+
+      .category-btn {
+        padding: 10px 20px;
+        margin-right: 1px;
+        background: #ff6f61;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .category-btn.active {
+        background: #ff3d2e;
+      }
+
+      .category-btn:hover {
+        background: #ff3d2e;
+      }
+
+      @media (max-width: 768px) {
+        .menu-header {
+          padding: 0 15px; /* Add some padding for better spacing */
+        }
+
+        .category-btn {
+          flex-shrink: 0; /* Prevent buttons from shrinking */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="restaurant-name">AAHA EMI RUCHI</div>
+      <div class="menu-header">
+        <button class="category-btn active" onclick="toggleMenu('all', this)">
+          ALL
+        </button>
+        <button class="category-btn" onclick="toggleMenu('Non-Veg Soup', this)">
+          Non-Veg Soup
+        </button>
+        <button class="category-btn" onclick="toggleMenu('Veg Soup', this)">
+          Veg Soup
+        </button>
+        <button class="category-btn" onclick="toggleMenu('Thandoori Starters', this)">
+          Thandoori Starters
+        </button>
+        <button class="category-btn" onclick="toggleMenu('Roti', this)">
+          Roti
+        </button>
+        <button class="category-btn" onclick="toggleMenu('Veg Starters', this)">
+          Veg Starters
+        </button>
+        <button class="category-btn" onclick="toggleMenu('Veg Curries', this)">
+          Veg Curries
+        </button>
+        <button class="category-btn" onclick="toggleMenu('Non-Veg Starters', this)">
+          Non-Veg Starters
+        </button>
+        <button class="category-btn" onclick="toggleMenu('Non-Veg Fried Rice', this)">
+          Non-Veg Fried Rice
+        </button>
+        <button class="category-btn" onclick="toggleMenu('Mutton & Seafoods', this)">
+          Mutton & Seafoods
+        </button>
+        <button class="category-btn" onclick="toggleMenu('Non-Veg Curries', this)">
+          Non-Veg Curries
+        </button>
+        <button class="category-btn" onclick="toggleMenu('Egg', this)">
+          Egg
+        </button>        
+
+      </div>
+
+      <div class="menu-section active" id="all">
+        <h3>All Items</h3>
+        <div class="menu-item"><span>Chicken Hot & Sour Soup</span> <span>₹100</span></div>
+        <div class="menu-item"><span>Chicken Manchow Soup</span> <span>₹100</span></div>
+        <div class="menu-item"><span>Chicken Killer Soup</span> <span>₹100</span></div>
+        <div class="menu-item"><span>Chicken Coriander Soup</span> <span>₹100</span></div>
+        <div class="menu-item"><span>Mutton Soup</span> <span>₹120</span></div>
+        <div class="menu-item"><span>Mutton Bone Soup</span> <span>₹120</span></div>
+        <div class="menu-item"><span>Mutton Killer Soup</span> <span>₹120</span></div>
+        <div class="menu-item"><span>Coriander Soup</span> <span>₹80</span></div>
+        <div class="menu-item"><span>Manchow Soup</span> <span>₹80</span></div>
+        <div class="menu-item"><span>Hot Sour Soup</span> <span>₹80</span></div>
+        <div class="menu-item"><span>Tomato Soup</span> <span>₹80</span></div>
+        <div class="menu-item"><span>Sweet Corn Soup</span> <span>₹80</span></div>
+        <div class="menu-item"><span>Chicken Thandoori</span> <span>₹520</span></div>
+        <div class="menu-item"><span>Chilly Thandoori</span> <span>₹600</span></div>
+        <div class="menu-item"><span>Kalmi Kabab</span> <span>₹320</span></div>
+        <div class="menu-item"><span>Chilly Kabab</span> <span>₹360</span></div>
+        <div class="menu-item"><span>Chicken Tikka</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Achuri Tikka</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Chicken Padi Tikka</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Malai Tikka</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Chicken Garlic Tikka</span> <span>₹4.49</span></div>
+        <div class="menu-item"><span>Thandoori Fish</span> <span>₹ -</span></div>
+        <div class="menu-item"><span>Kandhari Kabab</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Butter Naan</span> <span>₹40</span></div>
+        <div class="menu-item"><span>Thandoori Roti</span> <span>₹20</span></div>
+        <div class="menu-item"><span>Phulka</span> <span>₹10</span></div>
+        <div class="menu-item"><span>Rumali Roti</span> <span>₹40</span></div>
+        <div class="menu-item"><span>Garlic Naan</span> <span>₹60</span></div>
+        <div class="menu-item"><span>Paneer Kulcha</span> <span>₹60</span></div>
+        <div class="menu-item"><span>Masala Kulcha</span> <span>₹30</span></div>
+        <div class="menu-item"><span>Plain Kulcha</span> <span>₹30</span></div>       
+        <div class="menu-item"><span>Veg Manchurian</span> <span>₹140</span></div>
+        <div class="menu-item"><span>Chilly Mushroom</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Mushroom 65</span> <span>₹220</span></div>
+        <div class="menu-item"><span>Mushroom Pakoda</span> <span>₹220</span></div>
+        <div class="menu-item"><span>Pepper Mushroom</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Veg Bullet</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Finger Chips</span> <span>₹130</span></div>
+        <div class="menu-item"><span>Veg Stick</span> <span>₹180</span></div>
+        <div class="menu-item"><span>Chilly Paneer</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Paneer 65</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Pepper Paneer</span> <span>₹250</span></div>
+        <div class="menu-item"><span>Crispy Corn</span> <span>₹140</span></div>
+        <div class="menu-item"><span>Boil Corn</span> <span>₹130</span></div>
+        <div class="menu-item"><span>Aha Special Veg</span> <span>₹180</span></div>
+        <div class="menu-item"><span>Kaju Roast</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Paneer Tikka</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Baby Corn</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Chilly Baby Corn</span> <span>₹160</span></div>
+        <div class="menu-item"><span>Baby Corn 65</span> <span>₹180</span></div>
+        <div class="menu-item"><span>Gobi 65</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Chilly Gobi</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Gobi Manchurian</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Baby Corn Manchurian</span> <span>₹170</span></div>
+        <div class="menu-item"><span>Mushroom Curry</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Kaju Mushroom</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Paneer Curry</span> <span>₹220</span></div>
+        <div class="menu-item"><span>Kaju Paneer</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Tomato Curry</span> <span>₹130</span></div>
+        <div class="menu-item"><span>Kaju Tomato</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Dal Tomato</span> <span>₹130</span></div>
+        <div class="menu-item"><span>Green Peas Masala</span> <span>₹140</span></div>
+        <div class="menu-item"><span>Mixed Veg Curry</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Methi Chaman</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Kadhai Paneer</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Paneer Butter Masala</span> <span>₹220</span></div>
+        <div class="menu-item"><span>Paneer Shahi Korma</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Mutter Paneer</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Veg Kolhapuri</span> <span>₹170</span></div>
+        <div class="menu-item"><span>Paneer Kolhapuri</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Paneer Hyderabadi</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Mushroom Hyderabadi</span> <span>₹220</span></div>
+        <div class="menu-item"><span>Punjabi Paneer Masala</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Palak Paneer</span> <span>₹250</span></div>
+        <div class="menu-item"><span>Pondu Chicken</span> <span>₹330</span></div>
+        <div class="menu-item"><span>Chicken 65</span> <span>₹250</span></div>
+        <div class="menu-item"><span>Chilly Chicken</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Chilly Lollypop</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Lollypop Roast</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Chilly Wings</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Wings Roast</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Chicken Manchurian</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Chicken 555</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Chicken Majestic</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Dragon Chicken</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Kaju Nut Chicken</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Coconut Chicken</span> <span>₹300</span></div>
+        <div class="menu-item"><span>Pepper Chicken</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Apollo Chicken</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Lemon Chicken</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Garlic Chicken</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Bone Pakoda</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Crispy Chicken</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Aha Chicken</span> <span>₹290</span></div>
+        <div class="menu-item"><span>Chicken Fried Rice</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Sp.Chicken Fried Rice</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Egg Fried Rice</span> <span>₹160</span></div>
+        <div class="menu-item"><span>Prawn Fried Rice</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Sp.Prawn Fried Rice</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Mutton Fried Rice</span> <span>₹300</span></div>
+        <div class="menu-item"><span>Mixed Non-Veg Fried Rice</span> <span>₹330</span></div>
+        <div class="menu-item"><span>Chicken Schezwan</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Chicken 65 Fried Rice</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Bone Chicken Fried Rice</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Mutton Fry</span> <span>₹350</span></div>
+        <div class="menu-item"><span>Mutton Curry</span> <span>₹350</span></div>
+        <div class="menu-item"><span>Thalakaya Fry</span> <span>₹300</span></div>
+        <div class="menu-item"><span>Thalakaya Curry</span> <span>₹300</span></div>
+        <div class="menu-item"><span>Boti Fry</span> <span>₹300</span></div>
+        <div class="menu-item"><span>Boti Curry</span> <span>₹300</span></div>
+        <div class="menu-item"><span>Loose Prawn</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Prawn 65</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Chilly prawn</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Prawn Curry</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Fish Fry</span> <span>₹160</span></div>
+        <div class="menu-item"><span>Fish Roast</span> <span>₹160</span></div>
+        <div class="menu-item"><span>Fish Curry</span> <span>₹160</span></div>
+        <div class="menu-item"><span>Apollo Fish</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Crabs Fry</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Chilly Pitta</span> <span>₹100</span></div>
+        <div class="menu-item"><span>Pitta</span> <span>₹100</span></div>
+        <div class="menu-item"><span>Basha Fish</span> <span>₹460</span></div>
+        <div class="menu-item"><span>Bone Curry</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Boneless Curry</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Chicken Mughlai</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Chicken Maharani</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Chicken Afghani</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Chicken Dilkhush</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Chicken Lolvani</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Chicken Kolhapuri</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Chicken Patiyala</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Kadhai Chicken</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Chicken Malaysia</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Chicken Chetinadu</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Kaju Chicken Curry</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Liver Curry(Fry)</span> <span>₹130</span></div>
+        <div class="menu-item"><span>Punjabi Chicken</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Andhra Bone Chicken</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Andhra Boneless Chicken</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Andhra Bone Hyderabadi</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Andhra Boneless Hyderabadi</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Ginger Chicken</span> <span>₹250</span></div>
+        <div class="menu-item"><span>Chilly Egg</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Egg Pakoda</span> <span>₹160</span></div>
+        <div class="menu-item"><span>Egg Curry(3 Eggs)</span> <span>₹100</span></div>
+        <div class="menu-item"><span>Anda Keema</span> <span>₹140</span></div>
+        <div class="menu-item"><span>Anda Bhuji</span> <span>₹130</span></div>
+        <div class="menu-item"><span>Anda Tadaka</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Egg 65</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Omelette</span> <span>₹60</span></div>
+        <div class="menu-item"><span>Half Boil Egg</span> <span>₹50</span></div>
+        <div class="menu-item"><span>Boil Egg(3)</span> <span>₹50</span></div>
+      </div>
+
+
+      <div class="menu-section" id="Non-Veg Soup">
+        <h3>Non-Veg Soup</h3>
+        <div class="menu-item"><span>Chicken Hot & Sour Soup</span> <span>₹100</span></div>
+        <div class="menu-item"><span>Chicken Manchow Soup</span> <span>₹100</span></div>
+        <div class="menu-item"><span>Chicken Killer Soup</span> <span>₹100</span></div>
+        <div class="menu-item"><span>Chicken Coriander Soup</span> <span>₹100</span></div>
+        <div class="menu-item"><span>Mutton Soup</span> <span>₹120</span></div>
+        <div class="menu-item"><span>Mutton Bone Soup</span> <span>₹120</span></div>
+        <div class="menu-item"><span>Mutton Killer Soup</span> <span>₹120</span></div>
+      </div>
+
+      <div class="menu-section" id="Veg Soup">
+        <h3>Veg Soup</h3>
+        <div class="menu-item"><span>Coriander Soup</span> <span>₹80</span></div>
+        <div class="menu-item"><span>Manchow Soup</span> <span>₹80</span></div>
+        <div class="menu-item"><span>Hot Sour Soup</span> <span>₹80</span></div>
+        <div class="menu-item"><span>Tomato Soup</span> <span>₹80</span></div>
+        <div class="menu-item"><span>Sweet Corn Soup</span> <span>₹80</span></div>
+      </div>
+
+      <div class="menu-section" id="Thandoori Starters">
+        <h3>Thandoori Starters</h3>
+        <div class="menu-item"><span>Chicken Thandoori</span> <span>₹520</span></div>
+        <div class="menu-item"><span>Chilly Thandoori</span> <span>₹600</span></div>
+        <div class="menu-item"><span>Kalmi Kabab</span> <span>₹320</span></div>
+        <div class="menu-item"><span>Chilly Kabab</span> <span>₹360</span></div>
+        <div class="menu-item"><span>Chicken Tikka</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Achuri Tikka</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Chicken Padi Tikka</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Malai Tikka</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Chicken Garlic Tikka</span> <span>₹4.49</span></div>
+        <div class="menu-item"><span>Thandoori Fish</span> <span>₹ -</span></div>
+        <div class="menu-item"><span>Kandhari Kabab</span> <span>₹280</span></div>
+      </div>
+
+      <div class="menu-section" id="Roti">
+        <h3>Roti</h3>
+        <div class="menu-item"><span>Butter Naan</span> <span>₹40</span></div>
+        <div class="menu-item"><span>Thandoori Roti</span> <span>₹20</span></div>
+        <div class="menu-item"><span>Phulka</span> <span>₹10</span></div>
+        <div class="menu-item"><span>Rumali Roti</span> <span>₹40</span></div>
+        <div class="menu-item"><span>Garlic Naan</span> <span>₹60</span></div>
+        <div class="menu-item"><span>Paneer Kulcha</span> <span>₹60</span></div>
+        <div class="menu-item"><span>Masala Kulcha</span> <span>₹30</span></div>
+        <div class="menu-item"><span>Plain Kulcha</span> <span>₹30</span></div>
+      </div>
+
+      <div class="menu-section" id="Veg Starters">
+        <h3>Veg Starters</h3>
+        <div class="menu-item"><span>Veg Manchurian</span> <span>₹140</span></div>
+        <div class="menu-item"><span>Chilly Mushroom</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Mushroom 65</span> <span>₹220</span></div>
+        <div class="menu-item"><span>Mushroom Pakoda</span> <span>₹220</span></div>
+        <div class="menu-item"><span>Pepper Mushroom</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Veg Bullet</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Finger Chips</span> <span>₹130</span></div>
+        <div class="menu-item"><span>Veg Stick</span> <span>₹180</span></div>
+        <div class="menu-item"><span>Chilly Paneer</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Paneer 65</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Pepper Paneer</span> <span>₹250</span></div>
+        <div class="menu-item"><span>Crispy Corn</span> <span>₹140</span></div>
+        <div class="menu-item"><span>Boil Corn</span> <span>₹130</span></div>
+        <div class="menu-item"><span>Aha Special Veg</span> <span>₹180</span></div>
+        <div class="menu-item"><span>Kaju Roast</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Paneer Tikka</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Baby Corn</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Chilly Baby Corn</span> <span>₹160</span></div>
+        <div class="menu-item"><span>Baby Corn 65</span> <span>₹180</span></div>
+        <div class="menu-item"><span>Gobi 65</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Chilly Gobi</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Gobi Manchurian</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Baby Corn Manchurian</span> <span>₹170</span></div>
+      </div>
+
+      <div class="menu-section" id="Veg Curries">
+        <h3>Veg Curries</h3>
+        <div class="menu-item"><span>Mushroom Curry</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Kaju Mushroom</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Paneer Curry</span> <span>₹220</span></div>
+        <div class="menu-item"><span>Kaju Paneer</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Tomato Curry</span> <span>₹130</span></div>
+        <div class="menu-item"><span>Kaju Tomato</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Dal Tomato</span> <span>₹130</span></div>
+        <div class="menu-item"><span>Green Peas Masala</span> <span>₹140</span></div>
+        <div class="menu-item"><span>Mixed Veg Curry</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Methi Chaman</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Kadhai Paneer</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Paneer Butter Masala</span> <span>₹220</span></div>
+        <div class="menu-item"><span>Paneer Shahi Korma</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Mutter Paneer</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Veg Kolhapuri</span> <span>₹170</span></div>
+        <div class="menu-item"><span>Paneer Kolhapuri</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Paneer Hyderabadi</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Mushroom Hyderabadi</span> <span>₹220</span></div>
+        <div class="menu-item"><span>Punjabi Paneer Masala</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Palak Paneer</span> <span>₹250</span></div>
+      </div>
+
+      <div class="menu-section" id="Non-Veg Starters">
+        <h3>Non-Veg Starters</h3>
+        <div class="menu-item"><span>Pondu Chicken</span> <span>₹330</span></div>
+        <div class="menu-item"><span>Chicken 65</span> <span>₹250</span></div>
+        <div class="menu-item"><span>Chilly Chicken</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Chilly Lollypop</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Lollypop Roast</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Chilly Wings</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Wings Roast</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Chicken Manchurian</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Chicken 555</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Chicken Majestic</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Dragon Chicken</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Kaju Nut Chicken</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Coconut Chicken</span> <span>₹300</span></div>
+        <div class="menu-item"><span>Pepper Chicken</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Apollo Chicken</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Lemon Chicken</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Garlic Chicken</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Bone Pakoda</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Crispy Chicken</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Aha Chicken</span> <span>₹290</span></div>
+      </div>
+
+      <div class="menu-section" id="Non-Veg Fried Rice">
+        <h3>Non-Veg Fried Rice</h3>
+        <div class="menu-item"><span>Chicken Fried Rice</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Sp.Chicken Fried Rice</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Egg Fried Rice</span> <span>₹160</span></div>
+        <div class="menu-item"><span>Prawn Fried Rice</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Sp.Prawn Fried Rice</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Mutton Fried Rice</span> <span>₹300</span></div>
+        <div class="menu-item"><span>Mixed Non-Veg Fried Rice</span> <span>₹330</span></div>
+        <div class="menu-item"><span>Chicken Schezwan</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Chicken 65 Fried Rice</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Bone Chicken Fried Rice</span> <span>₹200</span></div>
+      </div>
+
+      <div class="menu-section" id="Mutton & Seafoods">
+        <h3>Mutton & Seafoods</h3>
+        <div class="menu-item"><span>Mutton Fry</span> <span>₹350</span></div>
+        <div class="menu-item"><span>Mutton Curry</span> <span>₹350</span></div>
+        <div class="menu-item"><span>Thalakaya Fry</span> <span>₹300</span></div>
+        <div class="menu-item"><span>Thalakaya Curry</span> <span>₹300</span></div>
+        <div class="menu-item"><span>Boti Fry</span> <span>₹300</span></div>
+        <div class="menu-item"><span>Boti Curry</span> <span>₹300</span></div>
+        <div class="menu-item"><span>Loose Prawn</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Prawn 65</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Chilly prawn</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Prawn Curry</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Fish Fry</span> <span>₹160</span></div>
+        <div class="menu-item"><span>Fish Roast</span> <span>₹160</span></div>
+        <div class="menu-item"><span>Fish Curry</span> <span>₹160</span></div>
+        <div class="menu-item"><span>Apollo Fish</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Crabs Fry</span> <span>₹240</span></div>
+        <div class="menu-item"><span>Chilly Pitta</span> <span>₹100</span></div>
+        <div class="menu-item"><span>Pitta</span> <span>₹100</span></div>
+        <div class="menu-item"><span>Basha Fish</span> <span>₹460</span></div>
+      </div>
+
+      <div class="menu-section" id="Non-Veg Curries">
+        <h3>Non-Veg Curries</h3>
+        <div class="menu-item"><span>Bone Curry</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Boneless Curry</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Chicken Mughlai</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Chicken Maharani</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Chicken Afghani</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Chicken Dilkhush</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Chicken Lolvani</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Chicken Kolhapuri</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Chicken Patiyala</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Kadhai Chicken</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Chicken Malaysia</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Chicken Chetinadu</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Kaju Chicken Curry</span> <span>₹280</span></div>
+        <div class="menu-item"><span>Liver Curry(Fry)</span> <span>₹130</span></div>
+        <div class="menu-item"><span>Punjabi Chicken</span> <span>₹260</span></div>
+        <div class="menu-item"><span>Andhra Bone Chicken</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Andhra Boneless Chicken</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Andhra Bone Hyderabadi</span> <span>₹200</span></div>
+        <div class="menu-item"><span>Andhra Boneless Hyderabadi</span> <span>₹230</span></div>
+        <div class="menu-item"><span>Ginger Chicken</span> <span>₹250</span></div>
+      </div>
+
+      <div class="menu-section" id="Egg">
+        <h3>Egg</h3>
+        <div class="menu-item"><span>Chilly Egg</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Egg Pakoda</span> <span>₹160</span></div>
+        <div class="menu-item"><span>Egg Curry(3 Eggs)</span> <span>₹100</span></div>
+        <div class="menu-item"><span>Anda Keema</span> <span>₹140</span></div>
+        <div class="menu-item"><span>Anda Bhuji</span> <span>₹130</span></div>
+        <div class="menu-item"><span>Anda Tadaka</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Egg 65</span> <span>₹150</span></div>
+        <div class="menu-item"><span>Omelette</span> <span>₹60</span></div>
+        <div class="menu-item"><span>Half Boil Egg</span> <span>₹50</span></div>
+        <div class="menu-item"><span>Boil Egg(3)</span> <span>₹50</span></div>
+      </div>
+
+
+
+    <div class="footer"><i>Powered by</i> <strong>Hittzer</strong></div>
+
+    <script>
+      function toggleMenu(category, btn) {
+        let sections = document.querySelectorAll(".menu-section");
+        let buttons = document.querySelectorAll(".category-btn");
+
+        sections.forEach((section) => section.classList.remove("active"));
+        buttons.forEach((button) => button.classList.remove("active"));
+
+        if (category === "all") {
+          document.getElementById("all").classList.add("active");
+        } else {
+          document.getElementById(category).classList.add("active");
+        }
+        btn.classList.add("active");
+      }
+    </script>
+  </body>
+</html>
